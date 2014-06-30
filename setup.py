@@ -19,7 +19,7 @@ module_paths = DEFAULT_MODULE_PATH.split(os.pathsep)
 # always install in /usr/share/ansible if specified
 # otherwise use the first module path listed
 if '/usr/share/ansible' in module_paths:
-    install_path = '/usr/share/ansible'
+    install_path = '/usr/local/share/ansible'
 else:
     install_path = module_paths[0]
 dirs=os.listdir("./library/")
