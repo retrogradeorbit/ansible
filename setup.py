@@ -16,10 +16,17 @@ except ImportError:
 # find library modules
 from ansible.constants import DEFAULT_MODULE_PATH
 module_paths = DEFAULT_MODULE_PATH.split(os.pathsep)
+
+# if environment variable ANSIBLE_SHARE is defined, install the share directory into that
 # always install in /usr/share/ansible if specified
 # otherwise use the first module path listed
-if '/usr/share/ansible' in module_paths:
-    install_path = '/usr/local/share/ansible'
+if 'ANSIBLE_SHARE' in os.environ:
+    install_path = os.environ['ANSIBLE_SHARE']
+elif getattr(sys, "real_prefix", None):
+    # in a virtualenv
+    install_path = os.path.join(sys.prefix, 'share/ansible/')
+elif '/usr/share/ansible' in module_paths:
+    install_path = '/usr/share/ansible'
 else:
     install_path = module_paths[0]
 dirs=os.listdir("./library/")

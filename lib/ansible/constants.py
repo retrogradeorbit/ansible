@@ -92,7 +92,7 @@ if getattr(sys, "real_prefix", None):
     # in a virtualenv
     DIST_MODULE_PATH = os.path.join(sys.prefix, 'share/ansible/')
 else:
-    DIST_MODULE_PATH = '/usr/local/share/ansible/'
+    DIST_MODULE_PATH = '/usr/share/ansible/'
 
 # check all of these extensions when looking for yaml files for things like
 # group variables -- really anything we can load
